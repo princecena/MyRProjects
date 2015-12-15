@@ -1,3 +1,37 @@
+##########################################################################################################
+#Vectors 
+##########################################################################################################
+numericVector <- c(0.5,0.6)
+logicalVector <- c(TRUE,FALSE,T,F)
+characterVector <- c("a","b","c")
+integerVector <- 9:29
+complexVector <- c(1+2i, 3+4i)
+
+#Using vector() function
+sampleVector <- vector("numeric",length = 10)
+
+#Mixing objects- Impilicit Coercion
+x <- c(1.7,"a")
+y <- c(TRUE,2)
+y <- c("a",TRUE)
+
+#Explicit Coercion
+x <- 0:6
+class(x)
+as.numeric(x)
+as.logical(x)
+as.character(x)
+
+#Nonsensical coercion results in NaS
+x <- c("a","b","c")
+as.numeric(x)
+as.logical(x)
+as.complex(x)
+
+##########################################################################################################
+#Examples 
+##########################################################################################################
+
 # Poker winnings from Monday to Friday
 poker_vector <- c(140, -50, 20, -120, 240)
 
