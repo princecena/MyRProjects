@@ -63,3 +63,29 @@ x[1, ,drop = FALSE] #returns a 1 X n matrix,where n is the number of columns.
 #Subsetting Partial Matching
 ######################################################################################################
 #Partial matching works with [[ and $
+
+x <- list(aardvark = 1:5)
+x$a #returns the object having name starting with a, in this case 'aardvark'
+x[["a"]] #returns NULL as by default it does exact matching
+x[["a", exact = FALSE]] #returns element with name 'aardvark'
+
+
+######################################################################################################
+#Removing NA Values
+######################################################################################################
+x <- c(1,2,NA,4,NA,5)
+bad <- is.na(x)
+x[!bad]
+
+#Multiple objects, each having missing values an you want to take subset of all 
+#objects having no missing values.Note that all objects should be of same length
+x <- c(1,2,NA,4,NA,5)
+y <- c("a","b",NA,"d",NA,"f")
+good <- complete.cases(x,y)
+x[good]
+y[good]
+
+#Removing missing values from data frame
+airquality[1:6, ]
+good <- complete.cases(airquality)
+airquality[good, ][1:6, ]
