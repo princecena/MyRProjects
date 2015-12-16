@@ -17,7 +17,7 @@ columnmean <- function(y,removeNA =TRUE) {
 ##########################################################################################################
 #Arguments Matching 
 ##########################################################################################################
-#Function arguments cal also be partially matched, which is useful for interactive work. The order of
+#Function arguments call also be partially matched, which is useful for interactive work. The order of
 #operations when given an argument is:
 #1. Check for exact match for a named argument
 #2. Check for a partial match
@@ -35,3 +35,11 @@ f(2)
 
 #In the above function , the function never uses the argument b, so calling f(2) will not produce an error
 #because the 2 gets positionally matched to a.
+
+##########################################################################################################
+#The "..." Argument
+##########################################################################################################
+#1. The ... srgument indicate a variable number of arguments that are usually passed on to other functions
+#2. The ... argument is also necessary when the number of arguments passed to the function cannot be known in advance
+#3. One catch with ... is that any arguments that appear after ... on the argument list must be 
+#   named explicitly and cannot be partially matched
