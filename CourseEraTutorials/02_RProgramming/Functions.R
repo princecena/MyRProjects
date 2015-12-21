@@ -40,6 +40,8 @@ f(2)
 #The "..." Argument
 ##########################################################################################################
 #1. The ... srgument indicate a variable number of arguments that are usually passed on to other functions
+
 #2. The ... argument is also necessary when the number of arguments passed to the function cannot be known in advance
+
 #3. One catch with ... is that any arguments that appear after ... on the argument list must be 
 #   named explicitly and cannot be partially matched
