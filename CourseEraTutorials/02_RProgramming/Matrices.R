@@ -12,7 +12,7 @@ dim(m) <- c(2,5)
 m <- matrix(1:4,nrow = 2,ncol = 2)
 dimnames(m) <- list(c("a","b"),c("c","d"))
 
-#cbind-ing and rbind-ing 
+#cbind-ing and rbind-ing also creates a matrix
 x <- c(1:3)
 y <- 10:12
 cbind(x,y)

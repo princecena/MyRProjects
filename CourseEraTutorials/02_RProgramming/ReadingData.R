@@ -35,7 +35,7 @@ tabAll <- read.table("datatable.txt",colClasses = classes)
 # When working with large datasets ,it's useful to know a few things about your system.
 # Calcluating memory requirements- If I have a dataframe with 1,500,000 rows and 120 columns, all of
 # which are numeric data.
-# 1,500,000 # 120 * 8/numeric
+# 1,500,000 # 120 * 8 bytes/numeric
 # = 1440000000 bytes
 # = 1440000000/ 2^20 bytes/MB
 # = 1,373.29 MB
