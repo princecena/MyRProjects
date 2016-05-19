@@ -1,3 +1,12 @@
+#There are a number of operators that can be used to extract subsets of R objects.
+#   [ always returns an object of the same class as the original; can be used to select more than one
+#   element (there is one exception)
+
+#   [[ is used to extract elements of a list or a data frame; it can only be used to extract a single
+#   element and the class of the returned object will not necessarily be a list or data frame
+
+#   $ is used to extract elements of a list or data frame by name; semantics are similar to that of [[.
+
 
 ######################################################################################################
 #Subsetting Vectors
@@ -27,7 +36,7 @@ x$bar  #returns a vector
 x[["bar"]]  #returns a vector
 x["bar"]  #returns a list
 
-#Extracting multiple elements of a list
+#Extracting multiple elements of a list using single bracket
 x <- list(foo = 1:4,bar =0.6, baz = "hello")
 x[c(1,3)]
 
@@ -51,10 +60,10 @@ x[[c(2,1)]] #returns 3.14
 x <- matrix(1:6,2,3)
 x[1,2] #returns element at first row and second column
 x[1,]  #returns first row containing all column values
-x[,2]  ##returns first column containing all row values
+x[,2]  ##returns second column containing all row values
 
-#By default, the dimensions are dropped when we extract a single element from matrix.
-#But by using drop = FALSE, the dimensions are not dropped.
+#By default, the dimensions of a matrix are dropped when we extract a single element from matrix.
+#But by using drop = FALSE, the dimensions are not dropped and you will get back the matrix object.
 x[1,2, drop = FALSE] #returns a 1 X 1 matrix as dimensions are now not dropped.
 x[1,]  #returns a vector containing first row with all column values
 x[1, ,drop = FALSE] #returns a 1 X n matrix,where n is the number of columns.
@@ -89,3 +98,16 @@ y[good]
 airquality[1:6, ]
 good <- complete.cases(airquality)
 airquality[good, ][1:6, ]
+
+######################################################################################################
+#Vectorized Operations
+######################################################################################################
+#Many operations in R are vectorized making code more efficient, concise, and easier to read.
+x <- 1:4
+y <- 6:9
+x * y
+x / y
+
+x <- matrix(1:4, 2, 2); y <- matrix(rep(10, 4), 2, 2)
+x * y ## element-wise multiplication
+x %*% y ## true matrix multiplication

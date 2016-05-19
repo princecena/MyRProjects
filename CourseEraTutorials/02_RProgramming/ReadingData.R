@@ -47,5 +47,29 @@ tabAll <- read.table("datatable.txt",colClasses = classes)
 # Textual formats - dump() and dput()
 ########################################################################################################
 
+# It is a way to read and write R Objects.So,
+# the dput function takes an arbitrary R object, 
+# and it will, use, it will take most types of R objects except for some more exotic ones, 
+# and it will create some R code that will essentially reconstruct the object in R.
+# You can dput the file to a file and then later on, you can read it into R using dget, 
+# and when you dget the object, you will get this object and you will see that it's, 
+# you have kind of reconstructed the object from before. So the dput function, 
+# essentially writes R code, which can be used to reconstruct an R object. 
+# When you dput, you can dget
+y <- data.frame(a = 1, b = "a")
+dput(y)
+dput(y, file = "y.R")
+new.y <- dget("y.R")
+new.y
 
+#Multiple objects can be deparsed using the dump function and read back in using source.
+# Dput wokrs on single object, but dump can be used with multiple R objects
+# When you dump, you can source
+x <- "foo"
+y <- data.frame(a = 1, b = "a")
+dump(c("x", "y"), file = "data.R")
+rm(x, y)
+source("data.R")
+y
+x
 
