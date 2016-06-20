@@ -46,7 +46,7 @@ lm <- function(x) {
 # search is continued in the parent environment
   
 # The search continues down the sequence of parent environments until we hit the top-level environment;
-# this usually the golbal environment(workspace) or the namespace of the package
+# this usually the global environment(workspace) or the namespace of the package
   
 # After the top-level environment, the search continues down the search list until we hit the empty environment.
 # If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.

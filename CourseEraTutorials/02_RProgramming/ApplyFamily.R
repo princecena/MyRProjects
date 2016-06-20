@@ -61,6 +61,12 @@ x <- c(rnorm(10),runif(10),rnorm(10,1))
 f <- gl(3,10)
 f
 tapply(x,f,mean)
+
+#Take group means without simplification.
+tapply(x, f, mean, simplify = FALSE)
+
+#Find group ranges
+tapply(x, f, range)
 ##########################################################################################################
 #mapply 
 ##########################################################################################################
@@ -68,6 +74,23 @@ tapply(x,f,mean)
 list(rep(1,4),rep(2,3),rep(3,2),rep(4,1))
 #instead we can do:
 mapply(rep,1:4,4:1)
+
+
+#Vectorizing a Function
+
+noise <- function(n, mean, sd) {
+  rnorm(n, mean, sd)
+}
+
+noise(5, 1, 2) #gives a vector of 5 elements
+noise(1:5, 1:5, 2) #this also gives a vector of 5 elements, but we wanted a list with first element having element 1 with a mean 1, second element having 2 elements with mean 2 and so on.
+
+noise(1:5, 1:5, 2) # this solves the purpose which is same as below command:
+
+list(noise(1, 1, 2), noise(2, 2, 2),
+     noise(3, 3, 2), noise(4, 4, 2),
+     noise(5, 5, 2))
+
 
 ##########################################################################################################
 #split 
