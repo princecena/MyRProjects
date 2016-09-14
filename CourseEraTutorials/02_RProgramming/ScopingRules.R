@@ -78,5 +78,35 @@ ls(environment(cube)) #gives what's in a function enviornment
 get("n",environment(cube)) #gets value of n in the specified enviornment
 
 ######################################################################################################
+# Lexical Scoping vs Dynamic Scoping
+######################################################################################################
+y <- 10
+
+f <- function(x) {
+  y <- 2
+  y^2 + g(x)
+}
+
+g <- function(x) {
+  x*y
+}
+
+# What is the value of f(3)"
+# When a function is defined in the global environment and is subsequently called from the global
+# envrionment, then the defining environment and the calling environment are the same. This can
+# sometimes give the appearance of dynamic scoping.
+
+g <- function(x) {
+  a <- 3
+  x+a+y
+}
+
+g(2)
+
+y <- 3
+g(2)
+
+######################################################################################################
 # Optimization
 ######################################################################################################
+# Refer to the video

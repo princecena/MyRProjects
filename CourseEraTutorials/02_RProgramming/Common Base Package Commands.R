@@ -120,4 +120,29 @@ subset(airquality, select = Ozone:Wind)
 
 with(airquality, subset(Ozone, Temp > 80))
 
+##########################################################################################################
+#with Command 
+##########################################################################################################
+#Value Returned:
 
+#For with, the value of the evaluated expr. For within, the modified object.Try below on command line:
+df <- data.frame(a=1:5,b=2:6)
+with(df, {c <- a + b; df;} )
+within(df, {c <- a + b; df;} )
+
+##########################################################################################################
+#paste Command 
+##########################################################################################################
+#Concatenate vectors after converting to character.
+
+# paste converts its arguments (via as.character) to character strings, and concatenates them 
+# (separating them by the string given by sep). If the arguments are vectors, 
+# they are concatenated term-by-term to give a character vector result. 
+# Vector arguments are recycled as needed, with zero-length arguments being recycled to "".
+
+paste(1:12)
+
+#two agruments:
+  
+#sep: concatenate the strings with this as seperator
+#collapse: used when there are two or more vectors to combine and we cant the result to be a single string

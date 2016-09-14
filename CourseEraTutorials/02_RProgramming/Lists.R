@@ -15,7 +15,7 @@ my_matrix <- matrix(1:9, ncol = 3)
 my_df <- mtcars[1:10,]
 
 # Construct list with these different elements:
-my_list <- list(my_vector,my_matrix,my_df)
+my_list <- list("my_vector" = my_vector,"my_matrix" = my_matrix,"my_df" = my_df)
 
 # Print 'my_list' to the console
 names(my_list) <- c("vec","mat","df")

@@ -18,7 +18,7 @@ lapply(x,function(elt) elt[,1]) #An anonymous function for extracting the first 
 #sapply 
 ##########################################################################################################
 #Same as lapply but try to simplify the result.It will try to simplify the result of lapply, if possible.
-# 1. If the result is a list where every element is lenght 1, then a vector is returned
+# 1. If the result is a list where every element is length 1, then a vector is returned
 # 2. If the result is a list where every element is a vector of the same length(>1), a matrix is returned
 # 3. If it can't figure it out, a list is returned
 
@@ -34,9 +34,12 @@ sapply(mean)
 # 3. It is not really faster than writing a loop, but it works in one line!
 
 x <- matrix(rnorm(200),20,10)
-apply(x,2,mean) #returns a vector of length 10 , which contains the mean of each column
-apply(x,1,sum) #returns a vector of length 20 , which contains the sum of each row
+apply(x,2,mean) #returns a vector of length 10 , which contains the mean of each column.Here we are keeping the
+# second dimension , which is the number of columns.
+apply(x,1,sum) #returns a vector of length 20 , which contains the sum of each row. Here we are keeping the
+# second dimension , which is the number of rows.
 
+# For sums and means of matrix dimensions, we have some shorcuts.
 # rowSums = apply(x,1,sum)
 # rowMeans = apply(x,1,mean)
 # rowSums = apply(x,2,sum)
