@@ -88,8 +88,10 @@ mydata.new
 # saves new variables inside the data frame using short names, 
 # and it allows you to use new variables anywhere in calculations
 
-mydata.new <- within(mydata, {x2 <- x  ^ 2
-  +              x3 <- x2 + 100 } )
+mydata.new <- within(mydata, {
+                x2 <- x  ^ 2
+                x3 <- x2 + 100 
+    } )
 
 mydata.new
 
@@ -97,18 +99,10 @@ mydata.new
 #When I reuse the variable name x2 rather than create a new variable, x3, I still get the right answer:
   
 mydata.new <- within(mydata, {
-    +               x2 <- x  ^ 2
-    +               x2 <- x2 + 100} )
+                   x2 <- x  ^ 2
+                   x2 <- x2 + 100} )
 
 mydata.new
-##########################################################################################################
-#with Command 
-##########################################################################################################
-#Value Returned:
-
-#For with, the value of the evaluated expr. For within, the modified object.
-
-
 
 ##########################################################################################################
 #subset Command 
@@ -145,4 +139,4 @@ paste(1:12)
 #two agruments:
   
 #sep: concatenate the strings with this as seperator
-#collapse: used when there are two or more vectors to combine and we cant the result to be a single string
+#collapse: used when there are two or more vectors to combine and we want the result to be a single string

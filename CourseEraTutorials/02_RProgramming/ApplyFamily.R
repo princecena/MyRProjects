@@ -4,7 +4,7 @@
 #1. Loop over a list and evaulate a function on each element
 #2. lapply takes three arguments: (1) a list x; (2) a function(or name of a function) FUN, (3)other
 #   arguments via ... agrument. If x is not a list,it will be coerced to a list using as.list
-x <- list(a = 1:5, b = rnorm(10),c =rnomr(20,1),d =rnorm(100,5))
+x <- list(a = 1:5, b = rnorm(10),c =rnorm(20,1),d =rnorm(100,5))
 lapply(mean)
 
 x <- 1:4
@@ -29,9 +29,10 @@ sapply(mean)
 #apply 
 ##########################################################################################################
 #Apply a function(often an anonymous function) over the margins of an array
-# 1. most often used to apply a function to the rows or coulns of a matrix
-# 2. can be sued with general arrays ,e.g., taking the average of an array of matrices
+# 1. most often used to apply a function to the rows or columns of a matrix
+# 2. can be used with general arrays ,e.g., taking the average of an array of matrices
 # 3. It is not really faster than writing a loop, but it works in one line!
+# 4. not generally advisable for data frames as it will coerce to a matrix first.
 
 x <- matrix(rnorm(200),20,10)
 apply(x,2,mean) #returns a vector of length 10 , which contains the mean of each column.Here we are keeping the
@@ -58,6 +59,8 @@ apply(a,c(1,2),mean) #same as rowMeans(a, dims = 2)
 #tapply 
 ##########################################################################################################
 #Apply a function over subsets of a numeric vector
+#Result returned can be simplified equivalent to sapply, using simplified = TRUE
+#If you use simplify = FALSE, a list is returned
 
 #take group means
 x <- c(rnorm(10),runif(10),rnorm(10,1))
@@ -100,7 +103,7 @@ list(noise(1, 1, 2), noise(2, 2, 2),
 ##########################################################################################################
 #split takes a vector(or list) or dataframe and splits it into groups determined by a factor or list of factors
 #have a similar signature to tapply
-#split always returns a list and then you can apply apply or sapply
+#split always returns a list and then you can apply lapply or sapply
 x <- c(rnorm(10),runif(10),rnorm(10,1))
 f <- gl(3,10)
 f
@@ -108,7 +111,7 @@ split(x,f)
 
 lapply(split(x,f),mean)  #same as doing 'tapply(x,f,mean)'
 
-# sapply can be used to split a dataframe into multiple dataframes based on a column as factor having different values
+# split can be used to split a dataframe into multiple dataframes based on a column as factor having different values
 s <- split(airquality,airquality$Month) #gives 5 dataframes as the Month column has five different values
 # Now if we want to calculate column mean of all dataframes, we can use lapply
 lapply(s, function(x) colMeans(x[,c("Ozone","Solar.R","Wind")],na.rm = TRUE))
