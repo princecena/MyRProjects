@@ -71,7 +71,7 @@ tapply(x, f, mean, simplify = FALSE)
 #Find group ranges
 tapply(x, f, range)
 ##########################################################################################################
-#mapply 
+#mapply
 ##########################################################################################################
 #Multivariate version of lapply
 list(rep(1,4),rep(2,3),rep(3,2),rep(4,1))
@@ -88,7 +88,7 @@ noise <- function(n, mean, sd) {
 noise(5, 1, 2) #gives a vector of 5 elements
 noise(1:5, 1:5, 2) #this also gives a vector of 5 elements, but we wanted a list with first element having element 1 with a mean 1, second element having 2 elements with mean 2 and so on.
 
-noise(1:5, 1:5, 2) # this solves the purpose which is same as below command:
+mapply(noise,1:5, 1:5, 2) # this solves the purpose which is same as below command:
 
 list(noise(1, 1, 2), noise(2, 2, 2),
      noise(3, 3, 2), noise(4, 4, 2),
@@ -108,13 +108,13 @@ split(x,f)
 
 lapply(split(x,f),mean)  #same as doing 'tapply(x,f,mean)'
 
-# sapply can be used to split a dataframe in to multiple dataframes based on a column as factor having different values
+# sapply can be used to split a dataframe into multiple dataframes based on a column as factor having different values
 s <- split(airquality,airquality$Month) #gives 5 dataframes as the Month column has five different values
 # Now if we want to calculate column mean of all dataframes, we can use lapply
 lapply(s, function(x) colMeans(x[,c("Ozone","Solar.R","Wind")],na.rm = TRUE))
 sapply(s, function(x) colMeans(x[,c("Ozone","Solar.R","Wind")],na.rm = TRUE)) #simplfies the result and returns a matrix
 
-#Splitting on More than One Level.Suppose we eant to split on two different factors
+#Splitting on More than One Level.Suppose we want to split on two different factors
 x <- rnorm(10)
 f1 <- gl(2,5)
 f2 <- gl(5,2)
