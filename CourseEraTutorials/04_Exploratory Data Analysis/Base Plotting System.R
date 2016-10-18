@@ -27,7 +27,7 @@ boxplot(Ozone ~ Month, airquality, xlab = "Month", ylab = "Ozone (ppb)")
 #   -lty: the line type (default is solid line), can be dashed, dotted, etc.
 #   -lwd: the line width, specified as an integer multiple
 #   -col: the plotting color, specified as a number, string, or hex code; the colors() function gives
-#   -you a vector of colors by name
+#         you a vector of colors by name
 #   -xlab: character string for the x-axis label
 #   -ylab: character string for the y-axis label
 
@@ -45,7 +45,7 @@ boxplot(Ozone ~ Month, airquality, xlab = "Month", ylab = "Ozone (ppb)")
 # Base Plotting Functions
 #   plot: make a scatterplot, or other type of plot depending on the class of the object being plotted
 #   lines: add lines to a plot, given a vector x values and a corresponding vector of y values (or a 2-
-#                                                                                                 column matrix); this function just connects the dots
+#          column matrix); this function just connects the dots
 #   points: add points to a plot
 #   text: add text labels to a plot using specified x, y coordinates
 #   title: add annotations to x, y axis labels, title, subtitle, outer margin
@@ -59,14 +59,12 @@ title(main = "Ozone and Wind in New York City") ## Add a title
 with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City"))
 with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue"))
 
-with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City",
-                      type = "n"))
+with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City",type = "n"))
 with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue"))
 with(subset(airquality, Month != 5), points(Wind, Ozone, col = "red"))
 legend("topright", pch = 1, col = c("blue", "red"), legend = c("May", "Other Months"))
 
-with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City",
-                      pch = 20))
+with(airquality, plot(Wind, Ozone, main = "Ozone and Wind in New York City",pch = 20))
 model <- lm(Ozone ~ Wind, airquality)
 abline(model, lwd = 2)
 
