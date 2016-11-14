@@ -149,7 +149,7 @@ sample_frac(flights, 0.01)
 # 
 # Grouping affects the verbs as follows:
 #   
-#   grouped select() is the same as ungrouped select(), except that grouping variables are     always retained.
+#   grouped select() is the same as ungrouped select(), except that grouping variables are always retained.
 # 
 #   grouped arrange() orders first by the grouping variables
 # 
