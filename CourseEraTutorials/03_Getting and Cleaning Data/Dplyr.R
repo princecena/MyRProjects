@@ -77,6 +77,7 @@ select(flights, -(year:day))
 # You can rename variables with select() by using named arguments:
 #   
 select(flights, tail_num = tailnum)
+select(flights, year:day,contains("dep"),contains("arr"))
 
 # But because select() drops all the variables not explicitly mentioned, it’s not that useful. Instead, use rename():
   
@@ -227,3 +228,37 @@ a4 <- filter(a3, arr > 30 | dep > 30)
     dep = mean(dep_delay, na.rm = TRUE)
   ) %>%
   filter(arr > 30 | dep > 30)
+  
+# for each day of the year, count the total number of flights and sort in descending order
+flights %>%
+  group_by(month, day) %>%
+  summarise(flight_count = n()) %>%
+  arrange(desc(flight_count))
+
+# rewrite more simply with the `tally` function
+flights %>%
+  group_by(Month, DayofMonth) %>%
+  tally(sort = TRUE)
+
+#Grouping can sometimes be useful without summarising
+# for each destination, show the number of cancelled and not cancelled flights
+flights %>%
+  group_by(dest) %>%
+  select(month) %>%
+  table() %>%
+  head()
+###############################################################################################
+# summarise_each
+###############################################################################################
+#summarise_each allows you to apply the same summary function to multiple columns at once
+#Note: mutate_each is also available
+  
+# for each carrier, calculate the percentage of flights cancelled or diverted
+flights %>%
+  group_by(carrier) %>%
+  summarise_each(funs(mean), origin, dest)
+
+# for each carrier, calculate the minimum and maximum arrival and departure delays
+flights %>%
+  group_by(carrier) %>%
+  summarise_each(funs(min(., na.rm=TRUE), max(., na.rm=TRUE)), matches("Delay"))

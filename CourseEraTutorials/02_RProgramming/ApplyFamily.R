@@ -14,9 +14,9 @@ lapply(x,runif,min = 0,max =  10)
 x <- list(a = matrix(1:4,2,2),b = matrix(1:6,3,2))
 lapply(x,function(elt) elt[,1]) #An anonymous function for extracting the first column of each matrix
 
-##########################################################################################################
+#########################################################################################################
 #sapply 
-##########################################################################################################
+#########################################################################################################
 #Same as lapply but try to simplify the result.It will try to simplify the result of lapply, if possible.
 # 1. If the result is a list where every element is length 1, then a vector is returned
 # 2. If the result is a list where every element is a vector of the same length(>1), a matrix is returned
@@ -25,9 +25,9 @@ lapply(x,function(elt) elt[,1]) #An anonymous function for extracting the first 
 x <- list(a = 1:5, b = rnorm(10),c =rnomr(20,1),d =rnorm(100,5))
 sapply(mean)
 
-##########################################################################################################
+#########################################################################################################
 #apply 
-##########################################################################################################
+#########################################################################################################
 #Apply a function(often an anonymous function) over the margins of an array
 # 1. most often used to apply a function to the rows or columns of a matrix
 # 2. can be used with general arrays ,e.g., taking the average of an array of matrices
@@ -55,9 +55,9 @@ apply(x,1,quantile,probs = c(0.25,0.75))
 a <- array(rnorm(2*2*10),c(2,2,10))
 apply(a,c(1,2),mean) #same as rowMeans(a, dims = 2)
 
-##########################################################################################################
+#########################################################################################################
 #tapply 
-##########################################################################################################
+#########################################################################################################
 #Apply a function over subsets of a numeric vector
 #Result returned can be simplified equivalent to sapply, using simplified = TRUE
 #If you use simplify = FALSE, a list is returned

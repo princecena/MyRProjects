@@ -124,9 +124,9 @@ df <- data.frame(a=1:5,b=2:6)
 with(df, {c <- a + b; df;} )
 within(df, {c <- a + b; df;} )
 
-##########################################################################################################
+#########################################################################################################
 #paste Command 
-##########################################################################################################
+#########################################################################################################
 #Concatenate vectors after converting to character.
 
 # paste converts its arguments (via as.character) to character strings, and concatenates them 
@@ -140,3 +140,11 @@ paste(1:12)
   
 #sep: concatenate the strings with this as seperator
 #collapse: used when there are two or more vectors to combine and we want the result to be a single string
+
+#########################################################################################################
+#aggregate Command 
+#########################################################################################################
+aggregate(Ozone ~ Month, data = airquality, mean)
+aggregate(cbind(Ozone, Temp) ~ Month, data = airquality, mean)
+
+
