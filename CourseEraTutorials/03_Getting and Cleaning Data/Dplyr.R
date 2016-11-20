@@ -262,3 +262,10 @@ flights %>%
 flights %>%
   group_by(carrier) %>%
   summarise_each(funs(min(., na.rm=TRUE), max(., na.rm=TRUE)), matches("Delay"))
+
+###############################################################################################
+# Window Functions
+###############################################################################################
+# Aggregation function (like mean) takes n inputs and returns 1 value
+# Window function takes n inputs and returns n values
+# Includes ranking and ordering functions (like min_rank), offset functions (lead and lag), and cumulative aggregates (like cummean).
