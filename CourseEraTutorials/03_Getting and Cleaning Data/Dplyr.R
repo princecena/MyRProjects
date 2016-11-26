@@ -269,3 +269,73 @@ flights %>%
 # Aggregation function (like mean) takes n inputs and returns 1 value
 # Window function takes n inputs and returns n values
 # Includes ranking and ordering functions (like min_rank), offset functions (lead and lag), and cumulative aggregates (like cummean).
+
+# for each carrier, calculate which two days of the year they had their longest departure delays
+# note: smallest (not largest) value is ranked as 1, so you have to use `desc` to rank by largest value
+flights %>%
+  group_by(UniqueCarrier) %>%
+  select(Month, DayofMonth, DepDelay) %>%
+  filter(min_rank(desc(DepDelay)) <= 2) %>%
+  arrange(UniqueCarrier, desc(DepDelay))
+
+# rewrite more simply with the `top_n` function
+flights %>%
+  group_by(UniqueCarrier) %>%
+  select(Month, DayofMonth, DepDelay) %>%
+  top_n(2) %>%
+  arrange(UniqueCarrier, desc(DepDelay))
+
+
+# for each month, calculate the number of flights and the change from the previous month
+flights %>%
+  group_by(Month) %>%
+  summarise(flight_count = n()) %>%
+  mutate(change = flight_count - lag(flight_count))
+
+
+# rewrite more simply with the `tally` function
+flights %>%
+  group_by(Month) %>%
+  tally() %>%
+  mutate(change = n - lag(n))
+
+# dplyr approach: better formatting, and adapts to your screen width
+glimpse(flights)
+
+###############################################################################################
+# Connecting to Databases
+###############################################################################################
+
+# dplyr can connect to a database as if the data was loaded into a data frame
+# Use the same syntax for local data frames and databases
+# Only generates SELECT statements
+# Currently supports SQLite, PostgreSQL/Redshift, MySQL/MariaDB, BigQuery, MonetDB
+# Example below is based upon an SQLite database containing the hflights data
+
+# connect to an SQLite database containing the hflights data
+my_db <- src_sqlite("my_db.sqlite3")
+
+# connect to the "hflights" table in that database
+flights_tbl <- tbl(my_db, "hflights")
+
+# example query with our data frame
+flights %>%
+  select(UniqueCarrier, DepDelay) %>%
+  arrange(desc(DepDelay))
+
+# identical query using the database
+flights_tbl %>%
+  select(UniqueCarrier, DepDelay) %>%
+  arrange(desc(DepDelay))
+
+# You can write the SQL commands yourself
+# dplyr can tell you the SQL it plans to run and the query execution plan
+
+# send SQL commands to the database
+tbl(my_db, sql("SELECT * FROM hflights LIMIT 100"))
+
+# ask dplyr for the SQL commands
+flights_tbl %>%
+  select(UniqueCarrier, DepDelay) %>%
+  arrange(desc(DepDelay)) %>%
+  explain()
