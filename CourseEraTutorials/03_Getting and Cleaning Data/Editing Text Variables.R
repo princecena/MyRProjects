@@ -52,13 +52,3 @@ length(grep("JeffStreet",cameraData$intersection))
 # paste0()
 # substr()
 
-
-
-
-
-
-
-
-
-
-
