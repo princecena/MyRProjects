@@ -65,6 +65,9 @@ test_one$Survived[test_one$Sex == "female"] <- 1
 ###############################################################################################
 # Intro to decision trees
 ###############################################################################################
+# Conceptually, the decision tree algorithm starts with all the data at the root node and scans all the variables for the best one to split on. Once a variable is chosen, you do the split and go down one level (or one node) and repeat. The final nodes at the bottom of the decision tree are known as terminal nodes, and the majority vote of the observations in that node determine how to predict for new observations that end up in that terminal node.
+
+
 # Load in the R package
 library(rpart)
 
