@@ -14,13 +14,23 @@
 # 4. Axes/legends are cleaned up(later)
 # 5. Color/size are primarily used for information
 
+
+# Simple Summaries of Data
+
+# 1. Five number Summary (summary function in R)
+# 2. Box Plots
+# 3. Histograms
+# 4. Density Plots
+# 5. Barplot
+
 head(airquality)
 summary(airquality)
 
 boxplot(airquality$Temp,col = 'blue')
 
-hist(airquality$Temp,col = 'green')
-rug
+hist(airquality$Temp,col = 'green') #gives more detail of data than boxplot
+rug(airquality$Temp) #gives all points in the histogram that make up the histogram
+
 
 hist(airquality$Temp,col = 'green', breaks = 100)
 rug(airquality$Temp)
@@ -34,8 +44,23 @@ abline(v = median(airquality$Temp), col = "magenta", lwd = 4)
 
 barplot(table(airquality$Month),col="wheat",main = "Number of Months")
 
+# Simple Summaries of Data
+# 
+# Two dimensions
+# -Multiple/overlayed 1-D plots (Lattice/ggplot2)
+# -Scatterplots
+# -Smooth scatterplots
+# 
+# > 2 dimensions
+# -Overlayed/multiple 2-D plots; coplots
+# -Use color, size, shape to add dimensions
+# -Spinning plots
+# -Actual 3-D plots (not that useful)
+
+# Multiple Box Plots
 boxplot(Temp ~ Month,data = airquality,col = 'red')
 
+# Multiple Histograms
 par(mfrow = c(2,1), mar = c(4,4,2,1))
 hist(subset(airquality, Month == 5)$Temp, col = "green")
 hist(subset(airquality, Month == 6)$Temp, col = "green")
@@ -43,10 +68,11 @@ hist(subset(airquality, Month == 7)$Temp, col = "green")
 hist(subset(airquality, Month == 8)$Temp, col = "green")
 hist(subset(airquality, Month == 9)$Temp, col = "green")
 
+# ScatterPlot
 with(airquality[!is.na(airquality$Ozone),],plot(Ozone,Temp))
 abline(h = 80, lwd = 2, lty = 2)
 
-
+# ScatterPlot using color
 with(airquality[!is.na(airquality$Ozone),],plot(Ozone,Temp, col = Month))
 abline(h = 80, lwd = 2, lty = 2)
 
