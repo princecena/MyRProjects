@@ -49,6 +49,16 @@ qplot(displ,hwy,data=mpg,geom=c("point","smooth"),facets = .~drv)
 # • coordinate	system	
 
 g <- ggplot(mpg,aes(displ,hwy)) + geom_point() + facet_grid(.~drv) +  geom_smooth(method = "lm")
+
+# Annota:on	
+# • Labels:	xlab(),	ylab(),	labs(),	ggtitle()	
+# • Each	of	the	“geom”	functions	has	options	to	modify		
+# • For	things	that	only	make	sense	globally,	use	theme()		
+#   – Example:	theme(legend.position	=	"none")		
+# • Two	standard	appearance	themes	are	included	
+#   – theme_gray():	The	default	theme	(gray	background)	
+#   – theme_bw():	More	stark/plain	
+
 ggplot(mpg,aes(displ,hwy)) + geom_point(color = "steelblue",size = 4, alpha = 1/2)
 ggplot(mpg,aes(displ,hwy)) + geom_point(aes(color = drv),size = 4, alpha = 1/2) + labs(title = "Cars Data")
 ggplot(mpg,aes(displ,hwy)) + geom_point(aes(color = drv),size = 2, alpha = 1/2) + geom_smooth(size = 4, linetype = 3, method = "lm", se = FALSE)
@@ -62,10 +72,10 @@ plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3))
 g <- ggplot(testdat, aes(x = x, y = y))
 g + geom_line()
 
-#Outlier Missing
+#Outlier Missing(not included in the dataset).It will subset the data to include points falling within ylim(-3,3)
 g + geom_line() + ylim(-3, 3)
 
-#Outlier Included
+#To include the outlier
 g + geom_line() + coord_cartesian(ylim = c(-3, 3))
 
 #Continuous variables can be made categorical by using the cut() function so
