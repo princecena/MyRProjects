@@ -44,8 +44,11 @@ distxy <- dist(dataFrame)
 hClustering <- hclust(distxy)
 plot(hClustering)
 
-#heatmap()
+#heatmap() function is good to visualize matrix data.I t runs hierarchichal clustering on the rows and columns of the table
 dataFrame <- data.frame(x = x, y = y)
 set.seed(143)
 dataMatrix <- as.matrix(dataFrame)[sample(1:12), ]
 heatmap(dataMatrix)
+
+# While using hierarchical clustering is how do you merge points together? And so the question is, you know, when you  merge a point together, what represents its new location. And so one is called average, so average linkage. And the idea is that if you take two points and their new  coordinate location, it's just the average of their x coordinates and their y coordinates. So it's kind of like the roughly the center of gravity or the middle of tat group of points, now that seems logical and and it can, and it will lead to a kind of certain type of clustering result.  The other type of approach is called complete linkage and there the idea is that if you want to measure the distance between two clusters of points, then you take the farthest two points from each, from the two clusters, as the distance.
+
