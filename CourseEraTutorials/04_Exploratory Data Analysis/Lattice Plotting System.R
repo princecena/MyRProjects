@@ -52,11 +52,28 @@ xyplot(Ozone ~ Wind, data = airquality)
 airquality <- transform(airquality, Month = factor(Month))
 xyplot(Ozone ~ Wind | Month, data = airquality, layout = c(5, 1))
 
-#Lattice Behaviour
+# Lattice Behavior 
+#  -Lattice functions behave differently from base graphics functions in one critical way.
+#  -Base graphics functions plot data directly to the graphics device (screen, PDF file, etc.)
+#  -Lattice graphics functions return an object of class trellis
+#  -The print methods for lattice functions actually do the work of plotting the data on the graphics
+# device.
+#  -Lattice functions return "plot objects" that can, in principle, be stored (but it’s usually better to just
+#                                                                            save the code + data).
+#  -On the command line, trellis objects are auto-printed so that it appears the function is plotting the
+# data
+
 p <- xyplot(Ozone ~ Wind, data = airquality) ## Nothing happens!
 print(p) ## Plot appears
+xyplot(Ozone ~ Wind, data = airquality) ## Auto-printing
+
 
 #Lattice Panel Functions
+
+# -Lattice functions have a panel function which controls what happens inside each panel of the plot.
+# -The lattice package comes with default panel functions, but you can supply your own if you want to customize  what happens in each panel
+# -Panel functions receive the x/y coordinates of the data points in their panel (along with any optional arguments)
+
 set.seed(10)
 x <- rnorm(100)
 f <- rep(0:1, each = 50)
@@ -64,15 +81,18 @@ y <- x + f - f * x + rnorm(100, sd = 0.5)
 f <- factor(f, labels = c("Group 1", "Group 2"))
 xyplot(y ~ x | f, layout = c(2, 1)) ## Plot with 2 panels
 
+
 ## Custom panel function
 xyplot(y ~ x | f, panel = function(x, y, ...) {
   panel.xyplot(x, y, ...) ## First call the default panel function for 'xyplot'
   panel.abline(h = median(y), lty = 2) ## Add a horizontal line at the median
 })
 
+
 ## Custom panel function: Regression Line
 xyplot(y ~ x | f, panel = function(x, y, ...) {
   panel.xyplot(x, y, ...) ## First call default panel function
   panel.lmline(x, y, col = 2) ## Overlay a simple linear regression line
 })
+
 

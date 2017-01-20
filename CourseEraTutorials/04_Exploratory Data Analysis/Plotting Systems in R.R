@@ -19,7 +19,7 @@ with(cars, plot(speed, dist))
 #   -Plots are created with a single function call (xyplot, bwplot, etc.)
 #   -Most useful for conditioning types of plots: Looking at how y changes with x across levels of z
 #   -Things like margins/spacing set automatically because entire plot is specified at once
-#   -Good for puttng many many plots on a screen
+#   -Good for putting many many plots on a screen
 # 
 #   -Sometimes awkward to specify an entire plot in a single function call
 #   -Annotation in plot is not especially intuitive
@@ -31,6 +31,7 @@ xyplot(Life.Exp ~ Income | region, data = state, layout = c(4, 1))
 ###########################################################################################
 
 # The ggplot2 System
+# -mixes elements of Base and Lattice
 # -Splits the difference between base and lattice in a number of ways
 # -Automatically deals with spacings, text, titles but also allows you to annotate by "adding" to a plot
 # -Superficial similarity to lattice but generally easier/more intuitive to use
